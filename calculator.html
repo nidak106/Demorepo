@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,51 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Calculator</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
         .calculator {
-            width: 300px;
-            margin: 50px auto;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
             padding: 20px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
         }
 
         #display {
             width: 100%;
-            height: 40px;
-            margin-bottom: 10px;
-            font-size: 20px;
+            height: 60px;
+            margin-bottom: 20px;
+            font-size: 24px;
             text-align: right;
-            padding: 5px;
-            box-sizing: border-box;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f8f9fa;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
+            gap: 10px;
         }
 
         button {
-            padding: 15px;
-            font-size: 18px;
+            padding: 20px;
+            font-size: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         button:hover {
             background-color: #e9e9e9;
+            transform: scale(0.98);
+        }
+
+        button:active {
+            transform: scale(0.95);
         }
 
         .operator {
             background-color: #f0f0f0;
+            color: #666;
         }
 
         .equals {
             background-color: #4CAF50;
             color: white;
+        }
+
+        .equals:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .calculator {
+                margin: 10px;
+                padding: 15px;
+            }
+
+            button {
+                padding: 15px;
+                font-size: 18px;
+            }
+
+            #display {
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .calculator {
+                margin: 5px;
+                padding: 10px;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .buttons {
+                gap: 5px;
+            }
         }
     </style>
 </head>
@@ -58,55 +120,32 @@
     <div class="calculator">
         <input type="text" id="display" readonly>
         <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendToDisplay('(')">(</button>
-            <button onclick="appendToDisplay(')')">)</button>
-            <button class="operator" onclick="appendToDisplay('/')">/</button>
+            <button>C</button>
+            <button>(</button>
+            <button>)</button>
+            <button class="operator">/</button>
             
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button class="operator" onclick="appendToDisplay('*')">*</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button class="operator">*</button>
             
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button class="operator">-</button>
             
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button class="operator">+</button>
             
-            <button onclick="appendToDisplay('0')">0</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            <button onclick="deleteLastChar()">⌫</button>
-            <button class="equals" onclick="calculate()">=</button>
+            <button>0</button>
+            <button>.</button>
+            <button>⌫</button>
+            <button class="equals">=</button>
         </div>
     </div>
-
-    <script>
-        function appendToDisplay(value) {
-            document.getElementById('display').value += value;
-        }
-
-        function clearDisplay() {
-            document.getElementById('display').value = '';
-        }
-
-        function deleteLastChar() {
-            let display = document.getElementById('display');
-            display.value = display.value.slice(0, -1);
-        }
-
-        function calculate() {
-            let display = document.getElementById('display');
-            try {
-                display.value = eval(display.value);
-            } catch(error) {
-                display.value = 'Error';
-            }
-        }
-    </script>
+    <script src="calculator.js"></script>
 </body>
 </html>
