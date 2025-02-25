@@ -73,3 +73,11 @@ function calculate() {
         display.value = 'Error';
     }
 } 
+function newfeature() {
+    console.log('new feature');
+}
+function newfeature2() {
+    console.log('new feature 2');
+}
+
+
